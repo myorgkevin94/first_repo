@@ -9,12 +9,12 @@ jobs:
 
     # Bind this job to the "production" environment
     environment:
-      name: production
+      name: prod
       url: https://example.com   # just a demo URL for display
 
     steps:
       - name: Print environment name
-        run: echo "Environment is:${{job.environment}}"
+        run: echo "Environment is:${{job.environment.name}}"
 
       - name: Use PROD_API_KEY
         run: echo "Prod API key is:${{secrets.PROD_API_KEY}}"
