@@ -2,6 +2,15 @@ name: Demo Environment Secret
 
 on:
   workflow_dispatch:    # allows manual run from Actions tab
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'prod'
+        type: choice
+        options:
+          - production
+          - staging
 
 jobs:
   deploy-to-prod:
@@ -9,12 +18,12 @@ jobs:
 
     # Bind this job to the "production" environment
     environment:
-      name: prod
-      url: https://example.com   # just a demo URL for display
+      name: ${{ inputs.environment }}   # THIS works
+      url: https://example.com
 
     steps:
       - name: Print environment name
-        run: echo "Environment is:${{job.environment.name}}"
+        run: echo "Environment is:${{inputs.environment}}"
 
       - name: Use PROD_API_KEY
         run: echo "Prod API key is:${{secrets.PROD_API_KEY}}"
