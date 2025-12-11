@@ -1,25 +1,20 @@
 name: Demo Environment Secret
 
 on:
-  workflow_dispatch:
-
-env:
-  DEPLOY_ENV: prod   # allowed in expressions
+  workflow_dispatch:    # allows manual run from Actions tab
 
 jobs:
   deploy-to-prod:
     runs-on: ubuntu-latest
 
+    # Bind this job to the "production" environment
     environment:
-      name: ${{env.DEPLOY_ENV}}
-      url: https://example.com
-
-    env:
-      DEPLOY_ENV: ${{env.DEPLOY_ENV}}   # make it available to steps
+      name: prod
+      url: https://example.com   # just a demo URL for display
 
     steps:
       - name: Print environment name
-        run: echo "Environment is:$DEPLOY_ENV"
+        run: echo "Environment is:${{job.environment}}"
 
       - name: Use PROD_API_KEY
         run: echo "Prod API key is:${{secrets.PROD_API_KEY}}"
