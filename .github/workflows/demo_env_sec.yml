@@ -9,7 +9,7 @@ on:
         default: 'prod'
         type: choice
         options:
-          - production
+          - prod
           - staging
 
 jobs:
