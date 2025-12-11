@@ -10,7 +10,7 @@ jobs:
     # Bind this job to the "production" environment
     environment:
       name: production
-      url: https://github.com/myorgkevin94/first_repo/settings/environments/10579021663   # just a demo URL for display
+      url: https://example.com   # just a demo URL for display
 
     steps:
       - name: Print environment name
